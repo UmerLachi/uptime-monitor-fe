@@ -1,0 +1,35 @@
+{
+  "name": "with-tailwindcss",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 8000",
+    "build": "next build",
+    "start": "next start -p 8000"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.3.2",
+    "axios": "^0.21.1",
+    "formik": "^2.2.9",
+    "next": "latest",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-query": "^3.16.1",
+    "react-simple-snackbar": "^1.1.11",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.0.4",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "postcss": "^8.1.10",
+    "tailwindcss": "^2.1.1"
+  }
+}
