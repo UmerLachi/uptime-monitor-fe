@@ -21,3 +21,5 @@ export const TextField = ({ label, ...props }) => {
     </>
   );
 };
+
+export const SelectField = () => <div>Select</div>;

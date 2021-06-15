@@ -19,7 +19,10 @@ const ForgotPasswordScreen = () => {
           />
         </div>
 
-        <button className='w-full px-4 py-2 mb-6 font-semibold text-white transition rounded-md bg-brand hover:bg-brand-dark'>
+        <button
+          type='button'
+          className='w-full px-4 py-2 mb-6 font-semibold text-white transition rounded-md bg-brand hover:bg-brand-dark'
+        >
           Send Reset Email
         </button>
 
