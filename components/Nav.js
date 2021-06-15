@@ -5,8 +5,6 @@ import { useRouter } from 'next/router';
 const Nav = () => {
   const router = useRouter();
 
-  console.log(router.pathname);
-
   return (
     <div className='bg-white border-b-2 border-gray-100 '>
       <div className='flex items-center justify-center px-4 py-4 mx-auto sm:px-6 max-w-7xl'>
@@ -15,6 +13,13 @@ const Nav = () => {
             <Image src='/logo.png' width={150} height={35} />
           </a>
         </Link>
+        <a
+          className='hidden'
+          onClick={() => router.push('https://www.pawnhost.com')}
+          href='#'
+        >
+          Hello
+        </a>
         <div className='items-center hidden ml-auto space-x-10 md:flex'>
           <a
             className='text-base font-medium text-gray-500 hover:text-brand'

@@ -117,13 +117,15 @@ const Home = () => {
                       </h3>
 
                       <div className='mt-6 text-center'>
-                        {mutation.data.data.status === 'up' ? (
-                          <Image
-                            src={mutation.data.data.image}
-                            width={800}
-                            height={600}
-                          />
-                        ) : (
+                        {mutation.data.data.status === 'up' &&
+                          mutation.data.data.image && (
+                            <Image
+                              src={mutation.data.data.image}
+                              width={800}
+                              height={600}
+                            />
+                          )}
+                        {mutation.data.data.status === 'down' && (
                           <Image
                             src='/img/down-error.svg'
                             width={200}
