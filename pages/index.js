@@ -4,24 +4,42 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
+import { useState, useEffect } from 'react';
 
 import { TextField } from '../components/Inputs';
 import { monitorUrl } from '../constants/urls';
+import getSeoFriendlyUrl from '../utils/getSeoFriendlyUrl';
 
 const Home = () => {
-  const mutation = useMutation((url) => axios.post(monitorUrl, url));
+  const router = useRouter();
+  const { url } = router.query;
+  const [activeUrl, setActiveUrl] = useState('');
+  const mutation = useMutation((u) => axios.post(monitorUrl, { url: u }));
+
+  useEffect(() => {
+    if (!url) return;
+
+    mutation.mutate(url);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url]);
 
   return (
     <>
       <Head>
         <title>
-          Is My Site Down Right Now, or Is it Just Me? - Lachi Sols Website
-          Uptime Test
+          {activeUrl
+            ? `${activeUrl} - Is ${activeUrl} Down Right Now, or Is it Just Me?`
+            : 'Is My Site Down Right Now, or Is it Just Me? - Lachi Sols Website Uptime Test'}
         </title>
         <meta
           name='description'
-          content='Is this site down right now? Use this free website uptime test to check if a site is down for everyone or just you. Find out how to get notified when your site is down.'
+          content={
+            activeUrl
+              ? `Is ${activeUrl} down right now? Use this free website uptime test to check if ${activeUrl} is down for everyone or just you.`
+              : 'Is this site down right now? Use this free website uptime test to check if a site is down for everyone or just you. Find out how to get notified when your site is down.'
+          }
         />
       </Head>
 
@@ -30,18 +48,19 @@ const Home = () => {
           Lachi Sols Website Uptime Test
         </h1>
         <p className='mt-5 text-xl text-center '>
-          Down for everyone? Or is it just me?
+          {activeUrl && `Is ${activeUrl}`} Down for everyone? Or is it just me?
         </p>
 
         <Formik
           initialValues={{ url: '' }}
           validationSchema={Yup.object({
             url: Yup.string()
-              .url('Please enter a valid URL. eg: https://twitter.com')
+              .url('URL is not valid. eg: https://twitter.com')
               .required(''),
           })}
           onSubmit={(values) => {
-            mutation.mutate(values);
+            setActiveUrl(getSeoFriendlyUrl(values.url));
+            router.push(`/?url=${values.url}`);
           }}
         >
           {({ dirty, isValid }) => (
@@ -127,6 +146,12 @@ const Home = () => {
                           {mutation.data.data.status.toUpperCase()}
                         </span>
                       </h3>
+
+                      <p className='mt-4 text-center'>
+                        Our server in the United States was{' '}
+                        {mutation.data.data.status === 'down' && 'NOT'} able to
+                        access it.
+                      </p>
 
                       <div className='mt-6 text-center'>
                         {mutation.data.data.status === 'up' &&

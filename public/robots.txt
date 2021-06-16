@@ -1,0 +1,3 @@
+User-Agent: *
+Allow: /
+Sitemap: https://uptime-monitor-fe.vercel.app/sitemap.xml
