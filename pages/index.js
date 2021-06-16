@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import Head from 'next/head';
 import { useMutation } from 'react-query';
 
 import { TextField } from '../components/Inputs';
@@ -13,6 +14,17 @@ const Home = () => {
 
   return (
     <>
+      <Head>
+        <title>
+          Is My Site Down Right Now, or Is it Just Me? - Lachi Sols Website
+          Uptime Test
+        </title>
+        <meta
+          name='description'
+          content='Is this site down right now? Use this free website uptime test to check if a site is down for everyone or just you. Find out how to get notified when your site is down.'
+        />
+      </Head>
+
       <section className='px-4 py-24'>
         <h1 className='text-4xl font-bold text-center '>
           Lachi Sols Website Uptime Test
@@ -230,7 +242,7 @@ const Home = () => {
       <section className='px-4 py-12 text-center bg-gray-50'>
         <div className='flex flex-col items-center justify-between mx-auto space-y-6 lg:space-y-0 lg:flex-row max-w-7xl'>
           <div>
-            <a href='#'>
+            <a href='/'>
               <Image src='/logo.png' width={150} height={35} />
             </a>
           </div>
